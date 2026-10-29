@@ -1,0 +1,141 @@
+{
+  "site": {
+    "title": "Moment",
+    "studio": "Stardust 17 Studio",
+    "edition": "2026.10",
+    "lang": "en",
+    "url": "https://stardust17studio.github.io/moment202610/",
+    "description": "Moment — photographs by Stardust 17 Studio. Morocco, Tokyo and a few still things in between.",
+    "intro": "Nineteen moments, kept quietly — the lanterns, sea wind and snow of Morocco, the rain and night of Tokyo, and a few still things in between.",
+    "background": {
+      "file": "20180107-snow.jpg",
+      "focus": "57% 100%"
+    }
+  },
+  "chapters": [
+    {
+      "id": "prologue",
+      "numeral": "I",
+      "title": "Prologue",
+      "photos": [
+        {
+          "file": "20170820-20170819-DSC_0154.jpg",
+          "title": "Amber Lattice",
+          "date": "2017-08-19",
+          "alt": "A glowing lantern behind a geometric lattice in a dark, green-tinted room"
+        },
+        {
+          "file": "20171002-13.jpg",
+          "title": "Still Life in Orange",
+          "alt": "Empty bottles and cans on a dark table against a bright orange wall"
+        }
+      ]
+    },
+    {
+      "id": "morocco",
+      "numeral": "II",
+      "title": "Morocco",
+      "photos": [
+        {
+          "file": "20171231-20171231_20171231-9B5A6750_3star.jpg",
+          "title": "The Last Train of the Year",
+          "alt": "A conductor in a cap leans out of the door of a cream-and-green train at a station platform"
+        },
+        {
+          "file": "20180101-20180101_20180101-9B5A6867_3star.jpg",
+          "title": "Hours in Gold",
+          "alt": "A large clock and a tall palm tree above a sunlit plaza with long shadows"
+        },
+        {
+          "file": "20180101-20180101_20180101-9B5A7158_3star.jpg",
+          "title": "Koutoubia",
+          "alt": "The Koutoubia minaret in Marrakech glowing warm against a deep blue sky, framed by palm trees"
+        },
+        {
+          "file": "20180102-3-star-20180102-9B5A7691.jpg",
+          "title": "Essaouira, Low Tide",
+          "alt": "The white walled town of Essaouira at sunset above wet sand and tide pools"
+        },
+        {
+          "file": "20180102-3-star-20180102-9B5A7709.jpg",
+          "title": "Blue Boats & Gulls",
+          "alt": "Blue fishing boats crowded below a stone sea fortress as gulls circle in the dusk sky"
+        },
+        {
+          "file": "20180102-20180102-9B5A8381.jpg",
+          "title": "A Quiet Conversation",
+          "alt": "Two pebbles painted with small veiled faces, standing side by side"
+        },
+        {
+          "file": "20180104-20180104-9B5A9032.jpg",
+          "title": "Souk Lanterns",
+          "alt": "Colourful stained-glass lanterns hanging in a warmly lit market"
+        },
+        {
+          "file": "20180104-20180104-9B5A9073.jpg",
+          "title": "Night in the Riad",
+          "alt": "A metal lantern glowing beside a turquoise pool in a riad courtyard at night"
+        },
+        {
+          "file": "20180107-snow.jpg",
+          "title": "Red in the Snow",
+          "alt": "A lone figure in a red cloak standing in a vast snowy plain beneath pale mountains"
+        },
+        {
+          "file": "20180107-20180107-9B5A1126.jpg",
+          "title": "Courtyard, From Above",
+          "alt": "A tiled riad courtyard seen from above, with carved wooden doors, mirrors and a potted palm"
+        },
+        {
+          "file": "20180111-20180111-9B5A1998.jpg",
+          "title": "The Arch",
+          "alt": "Black-and-white photograph of a brick archway framing a man, a child and a bird in flight, with another man sitting by the wall"
+        },
+        {
+          "file": "20180112-20180112-9B5A2826.jpg",
+          "title": "Window to the Atlantic",
+          "alt": "The setting sun over the ocean, seen through the opening of a sea cave"
+        }
+      ]
+    },
+    {
+      "id": "japan",
+      "numeral": "III",
+      "title": "Japan",
+      "photos": [
+        {
+          "file": "20180622-20180622_9B5A5742_3star.jpg",
+          "title": "Tokyo, After Dark",
+          "alt": "Tokyo Tower glowing amid the city lights at night"
+        },
+        {
+          "file": "20180623-20180623_9B5A6019_3star.jpg",
+          "title": "Aperture",
+          "alt": "Black-and-white close-up of a curved metal pavilion with a round opening revealing trees"
+        },
+        {
+          "file": "20180623-20180623_9B5A6077_3star.jpg",
+          "title": "Kaleidoscope in the Rain",
+          "alt": "A crowd of umbrellas on a rainy street, fractured in the mirrored facets of a building"
+        },
+        {
+          "file": "20180624-20180624_9B5A6344_3star.jpg",
+          "title": "Quiet Bloom",
+          "alt": "A sprig of small white flowers in a glass jar before a wired-glass window"
+        }
+      ]
+    },
+    {
+      "id": "epilogue",
+      "numeral": "IV",
+      "title": "Epilogue",
+      "photos": [
+        {
+          "file": "20181006-20181006_9B5A8881_3star.jpg",
+          "title": "Blue Hour",
+          "alt": "Driftwood in the foam of a dusky blue beach, with distant city lights along the shore"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="{{lang}}" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{{title}} — {{studio}}</title>
+  <meta name="description" content="{{description}}">
+  <meta name="theme-color" content="#eceff0">
+  <link rel="canonical" href="{{url}}">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{studio}}">
+  <meta property="og:title" content="{{title}} — {{studio}}">
+  <meta property="og:description" content="{{description}}">
+  <meta property="og:url" content="{{url}}">
+  <meta property="og:image" content="{{og_image}}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" as="image" href="{{bg_src}}" imagesrcset="{{bg_srcset}}" imagesizes="100vw" fetchpriority="high">
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/cormorant-garamond-latin-300-normal.woff2" crossorigin>
+  <link rel="stylesheet" href="assets/style.css">
+  <script>document.documentElement.className = 'js';</script>
+  <script src="assets/gallery.js" defer></script>
+</head>
+<body>
+  <div class="backdrop" aria-hidden="true" style="--focus: {{bg_focus}}; --lqip: url({{bg_lqip}})">
+    <img class="backdrop__sharp" src="{{bg_src}}" srcset="{{bg_srcset}}" sizes="100vw" alt="" fetchpriority="high">
+    <img class="backdrop__soft" src="{{bg_soft}}" alt="" decoding="async">
+    <div class="backdrop__wash"></div>
+  </div>
+
+  <header class="masthead">
+    <a class="masthead__brand" href="#top"><span class="dot" aria-hidden="true"></span>{{title}}</a>
+    <nav class="masthead__nav" aria-label="Chapters">{{nav}}</nav>
+  </header>
+
+  <main>
+    <section class="hero" id="top">
+      <p class="hero__studio">{{studio}}</p>
+      <p class="hero__edition">{{edition}}</p>
+      <div class="hero__body">
+        <h1 class="hero__title">{{title}}</h1>
+        <p class="hero__sub">Photographs <span class="hero__years">{{years}}</span></p>
+      </div>
+      <a class="hero__cue" href="#intro"><span>Scroll</span></a>
+      <a class="hero__credit" href="#{{cover_slug}}" data-open="{{cover_slug}}"><span class="dot" aria-hidden="true"></span><span>Cover — {{cover_title}} · {{cover_date}}</span></a>
+    </section>
+
+    <section class="intro reveal" id="intro">
+      <p class="intro__count"><span>{{count}}</span> works</p>
+      <p class="intro__text">{{intro}}</p>
+    </section>
+{{chapters}}
+  </main>
+
+  <footer class="colophon">
+    <span class="dot" aria-hidden="true"></span>
+    <p class="colophon__studio">{{studio}}</p>
+    <p>{{title}} — {{edition}}</p>
+    <p>© {{copyright_year}} {{studio}}. All photographs, all rights reserved.</p>
+    <a class="colophon__top" href="#top">Back to top</a>
+  </footer>
+
+  <dialog class="viewer" aria-label="Photograph viewer">
+    <figure class="viewer__figure">
+      <div class="viewer__stage" tabindex="-1"><img class="viewer__img" alt=""></div>
+      <figcaption class="viewer__caption">
+        <span class="viewer__no"></span>
+        <span class="viewer__title"></span>
+        <span class="viewer__meta"></span>
+        <span class="viewer__gear"></span>
+      </figcaption>
+    </figure>
+    <p class="viewer__count"></p>
+    <button class="viewer__btn viewer__close" type="button" aria-label="Close viewer"><span aria-hidden="true">Close</span></button>
+    <button class="viewer__btn viewer__prev" type="button" aria-label="Previous photograph"><span aria-hidden="true">←</span></button>
+    <button class="viewer__btn viewer__next" type="button" aria-label="Next photograph"><span aria-hidden="true">→</span></button>
+  </dialog>
+</body>
+</html>
