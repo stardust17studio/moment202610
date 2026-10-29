@@ -38,13 +38,12 @@
   <main>
     <section class="hero" id="top">
       <p class="hero__studio">{{studio}}</p>
-      <p class="hero__edition">{{edition}}</p>
       <div class="hero__body">
         <h1 class="hero__title">{{title}}</h1>
-        <p class="hero__sub">Photographs <span class="hero__years">{{years}}</span></p>
+        <p class="hero__sub">Photographs</p>
       </div>
       <a class="hero__cue" href="#intro"><span>Scroll</span></a>
-      <a class="hero__credit" href="#{{cover_slug}}" data-open="{{cover_slug}}"><span class="dot" aria-hidden="true"></span><span>Cover — {{cover_title}} · {{cover_date}}</span></a>
+      <a class="hero__credit" href="#{{cover_slug}}" data-open="{{cover_slug}}"><span class="dot" aria-hidden="true"></span><span>Cover — {{cover_title}}</span></a>
     </section>
 
     <section class="intro reveal" id="intro">
@@ -57,8 +56,7 @@
   <footer class="colophon">
     <span class="dot" aria-hidden="true"></span>
     <p class="colophon__studio">{{studio}}</p>
-    <p>{{title}} — {{edition}}</p>
-    <p>© {{copyright_year}} {{studio}}. All photographs, all rights reserved.</p>
+    <p>© {{studio}}. All photographs, all rights reserved.</p>
     <a class="colophon__top" href="#top">Back to top</a>
   </footer>
 

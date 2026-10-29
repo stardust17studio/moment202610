@@ -63,17 +63,9 @@ const mtime = async (file) => {
   }
 };
 
-function formatExif(exif, override) {
+function formatExif(exif) {
   const photo = exif?.Photo ?? {};
   const image = exif?.Image ?? {};
-  let date = null;
-  if (override) {
-    const [y, m, d] = override.split('-').map(Number);
-    date = new Date(Date.UTC(y, m - 1, d));
-  } else if (photo.DateTimeOriginal instanceof Date) {
-    // exif-reader treats the camera's wall-clock time as UTC, so read it back in UTC.
-    date = photo.DateTimeOriginal;
-  }
   const iso = Array.isArray(photo.ISOSpeedRatings) ? photo.ISOSpeedRatings[0] : photo.ISOSpeedRatings;
   const t = photo.ExposureTime;
   const settings = [
@@ -83,10 +75,6 @@ function formatExif(exif, override) {
     iso && `ISO ${iso}`,
   ].filter(Boolean);
   return {
-    date,
-    dateLabel: date
-      ? `${date.getUTCFullYear()}.${pad(date.getUTCMonth() + 1)}.${pad(date.getUTCDate())}`
-      : '',
     settings: settings.join(' · '),
     gear: [image.Model, photo.LensModel].filter(Boolean).join(' · '),
   };
@@ -126,7 +114,7 @@ async function processPhoto(entry, slug) {
     width: variants.at(-1).width,
     height: variants.at(-1).height,
     lqip: `data:image/webp;base64,${lqip.toString('base64')}`,
-    ...formatExif(exif, entry.date),
+    ...formatExif(exif),
   };
 }
 
@@ -138,14 +126,6 @@ function layoutFor(chapter) {
   return slots;
 }
 
-function monthRange(photos) {
-  const dates = photos.map((p) => p.date).filter(Boolean).sort((a, b) => a - b);
-  if (!dates.length) return '';
-  const fmt = (d) => `${d.getUTCFullYear()}.${pad(d.getUTCMonth() + 1)}`;
-  const [from, to] = [fmt(dates[0]), fmt(dates.at(-1))];
-  return from === to ? from : `${from} — ${to}`;
-}
-
 function renderWork(photo, number, slot) {
   const [small, medium, large] = photo.variants;
   const srcset = photo.variants.map((v) => `${v.rel} ${v.width}w`).join(', ');
@@ -155,7 +135,7 @@ function renderWork(photo, number, slot) {
         <figure class="work work--${slot}${orientation}" id="${esc(photo.slug)}" style="--ar:${ratio}">
           <a class="work__frame" href="${esc(large.rel)}" style="--lqip:url(${photo.lqip})"
              data-title="${esc(photo.title)}"
-             data-meta="${esc([photo.dateLabel, photo.settings].filter(Boolean).join(' · '))}"
+             data-meta="${esc(photo.settings)}"
              data-gear="${esc(photo.gear)}" data-no="${pad(number)}">
             <img src="${esc(medium.rel)}" srcset="${esc(srcset)}" sizes="${SIZES[slot]}"
                  width="${medium.width}" height="${medium.height}" alt="${esc(photo.alt)}"
@@ -164,7 +144,7 @@ function renderWork(photo, number, slot) {
           <figcaption class="work__caption">
             <span class="work__no">${pad(number)}</span>
             <span class="work__title">${esc(photo.title)}</span>
-            <span class="work__meta">${esc([photo.dateLabel, photo.settings].filter(Boolean).join(' · '))}</span>
+            <span class="work__meta">${esc(photo.settings)}</span>
           </figcaption>
         </figure>`;
 }
@@ -179,7 +159,7 @@ function renderChapter(chapter, startNumber) {
         <span class="chapter__numeral" aria-hidden="true">${esc(chapter.numeral)}</span>
         <div>
           <h2 class="chapter__title" id="${esc(chapter.id)}-title">${esc(chapter.title)}</h2>
-          <p class="chapter__meta">${esc(monthRange(chapter.photos))}<span class="sep">/</span>${count} ${count === 1 ? 'work' : 'works'}</p>
+          <p class="chapter__meta">${count} ${count === 1 ? 'work' : 'works'}</p>
         </div>
       </header>
       <div class="works">${works}
@@ -264,19 +244,16 @@ async function main() {
         `<a href="#${esc(c.id)}"><span class="nav__no" aria-hidden="true">${esc(c.numeral)}</span><span class="nav__label">${esc(c.title)}</span></a>`,
     )
     .join('');
-  const years = all.map((p) => p.date?.getUTCFullYear()).filter(Boolean);
   const [bgSmall, bgMedium] = cover.variants;
   const template = await readFile(path.join(SRC, 'index.html'), 'utf8');
   const html = render(template, {
     lang: esc(site.lang),
     title: esc(site.title),
     studio: esc(site.studio),
-    edition: esc(site.edition),
     description: esc(site.description),
     url: esc(site.url),
     og_image: esc(new URL('og.jpg', site.url).href),
     intro: esc(site.intro),
-    years: esc(`${Math.min(...years)} — ${Math.max(...years)}`),
     count: String(all.length),
     bg_src: esc(bgMedium.rel),
     bg_srcset: esc(cover.variants.map((v) => `${v.rel} ${v.width}w`).join(', ')),
@@ -285,10 +262,8 @@ async function main() {
     bg_focus: esc(site.background.focus),
     cover_slug: esc(cover.slug),
     cover_title: esc(cover.title),
-    cover_date: esc(cover.dateLabel),
     nav,
     chapters,
-    copyright_year: String(new Date().getFullYear()),
   });
   await writeFile(path.join(OUT, 'index.html'), html);
 
