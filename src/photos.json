@@ -18,14 +18,14 @@
       "title": "Prologue",
       "photos": [
         {
-          "file": "20170820-20170819-DSC_0154.jpg",
-          "title": "Amber Lattice",
-          "alt": "A glowing lantern behind a geometric lattice in a dark, green-tinted room"
+          "file": "20180101-20180101_20180101-9B5A7158_3star.jpg",
+          "title": "Koutoubia",
+          "alt": "The Koutoubia minaret in Marrakech glowing warm against a deep blue sky, framed by palm trees"
         },
         {
-          "file": "20171002-13.jpg",
-          "title": "Still Life in Orange",
-          "alt": "Empty bottles and cans on a dark table against a bright orange wall"
+          "file": "20180112-20180112-9B5A2826.jpg",
+          "title": "Window to the Atlantic",
+          "alt": "The setting sun over the ocean, seen through the opening of a sea cave"
         }
       ]
     },
@@ -35,21 +35,6 @@
       "title": "Morocco",
       "photos": [
         {
-          "file": "20171231-20171231_20171231-9B5A6750_3star.jpg",
-          "title": "The Last Train of the Year",
-          "alt": "A conductor in a cap leans out of the door of a cream-and-green train at a station platform"
-        },
-        {
-          "file": "20180101-20180101_20180101-9B5A6867_3star.jpg",
-          "title": "Hours in Gold",
-          "alt": "A large clock and a tall palm tree above a sunlit plaza with long shadows"
-        },
-        {
-          "file": "20180101-20180101_20180101-9B5A7158_3star.jpg",
-          "title": "Koutoubia",
-          "alt": "The Koutoubia minaret in Marrakech glowing warm against a deep blue sky, framed by palm trees"
-        },
-        {
           "file": "20180102-3-star-20180102-9B5A7691.jpg",
           "title": "Essaouira, Low Tide",
           "alt": "The white walled town of Essaouira at sunset above wet sand and tide pools"
@@ -58,11 +43,6 @@
           "file": "20180102-3-star-20180102-9B5A7709.jpg",
           "title": "Blue Boats & Gulls",
           "alt": "Blue fishing boats crowded below a stone sea fortress as gulls circle in the dusk sky"
-        },
-        {
-          "file": "20180102-20180102-9B5A8381.jpg",
-          "title": "A Quiet Conversation",
-          "alt": "Two pebbles painted with small veiled faces, standing side by side"
         },
         {
           "file": "20180104-20180104-9B5A9032.jpg",
@@ -85,14 +65,24 @@
           "alt": "A tiled riad courtyard seen from above, with carved wooden doors, mirrors and a potted palm"
         },
         {
+          "file": "20171231-20171231_20171231-9B5A6750_3star.jpg",
+          "title": "The Last Train of the Year",
+          "alt": "A conductor in a cap leans out of the door of a cream-and-green train at a station platform"
+        },
+        {
+          "file": "20180101-20180101_20180101-9B5A6867_3star.jpg",
+          "title": "Hours in Gold",
+          "alt": "A large clock and a tall palm tree above a sunlit plaza with long shadows"
+        },
+        {
           "file": "20180111-20180111-9B5A1998.jpg",
           "title": "The Arch",
           "alt": "Black-and-white photograph of a brick archway framing a man, a child and a bird in flight, with another man sitting by the wall"
         },
         {
-          "file": "20180112-20180112-9B5A2826.jpg",
-          "title": "Window to the Atlantic",
-          "alt": "The setting sun over the ocean, seen through the opening of a sea cave"
+          "file": "20180102-20180102-9B5A8381.jpg",
+          "title": "A Quiet Conversation",
+          "alt": "Two pebbles painted with small veiled faces, standing side by side"
         }
       ]
     },
@@ -107,14 +97,14 @@
           "alt": "Tokyo Tower glowing amid the city lights at night"
         },
         {
-          "file": "20180623-20180623_9B5A6019_3star.jpg",
-          "title": "Aperture",
-          "alt": "Black-and-white close-up of a curved metal pavilion with a round opening revealing trees"
-        },
-        {
           "file": "20180623-20180623_9B5A6077_3star.jpg",
           "title": "Kaleidoscope in the Rain",
           "alt": "A crowd of umbrellas on a rainy street, fractured in the mirrored facets of a building"
+        },
+        {
+          "file": "20180623-20180623_9B5A6019_3star.jpg",
+          "title": "Aperture",
+          "alt": "Black-and-white close-up of a curved metal pavilion with a round opening revealing trees"
         },
         {
           "file": "20180624-20180624_9B5A6344_3star.jpg",
@@ -128,6 +118,16 @@
       "numeral": "IV",
       "title": "Epilogue",
       "photos": [
+        {
+          "file": "20170820-20170819-DSC_0154.jpg",
+          "title": "Amber Lattice",
+          "alt": "A glowing lantern behind a geometric lattice in a dark, green-tinted room"
+        },
+        {
+          "file": "20171002-13.jpg",
+          "title": "Still Life in Orange",
+          "alt": "Empty bottles and cans on a dark table against a bright orange wall"
+        },
         {
           "file": "20181006-20181006_9B5A8881_3star.jpg",
           "title": "Blue Hour",
