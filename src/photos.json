@@ -20,12 +20,14 @@
         {
           "file": "20180101-20180101_20180101-9B5A7158_3star.jpg",
           "title": "Koutoubia",
-          "alt": "The Koutoubia minaret in Marrakech glowing warm against a deep blue sky, framed by palm trees"
+          "alt": "The Koutoubia minaret in Marrakech glowing warm against a deep blue sky, framed by palm trees",
+          "feature": true
         },
         {
           "file": "20180112-20180112-9B5A2826.jpg",
           "title": "Window to the Atlantic",
-          "alt": "The setting sun over the ocean, seen through the opening of a sea cave"
+          "alt": "The setting sun over the ocean, seen through the opening of a sea cave",
+          "feature": true
         }
       ]
     },
@@ -37,7 +39,8 @@
         {
           "file": "20180102-3-star-20180102-9B5A7691.jpg",
           "title": "Essaouira, Low Tide",
-          "alt": "The white walled town of Essaouira at sunset above wet sand and tide pools"
+          "alt": "The white walled town of Essaouira at sunset above wet sand and tide pools",
+          "feature": true
         },
         {
           "file": "20180102-3-star-20180102-9B5A7709.jpg",
@@ -94,7 +97,8 @@
         {
           "file": "20180622-20180622_9B5A5742_3star.jpg",
           "title": "Tokyo, After Dark",
-          "alt": "Tokyo Tower glowing amid the city lights at night"
+          "alt": "Tokyo Tower glowing amid the city lights at night",
+          "feature": true
         },
         {
           "file": "20180623-20180623_9B5A6077_3star.jpg",
@@ -131,7 +135,8 @@
         {
           "file": "20181006-20181006_9B5A8881_3star.jpg",
           "title": "Blue Hour",
-          "alt": "Driftwood in the foam of a dusky blue beach, with distant city lights along the shore"
+          "alt": "Driftwood in the foam of a dusky blue beach, with distant city lights along the shore",
+          "feature": true
         }
       ]
     }

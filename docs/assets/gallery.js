@@ -179,7 +179,9 @@
     if (event.target === viewer || event.target.classList.contains('viewer__figure')) close();
   });
 
-  viewer.addEventListener('keydown', (event) => {
+  // Listen on the document so the keys work even if focus has slipped out of the dialog.
+  document.addEventListener('keydown', (event) => {
+    if (!viewer.open) return;
     if (event.key === 'ArrowRight') {
       event.preventDefault();
       show(index + 1);

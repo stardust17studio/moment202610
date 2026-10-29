@@ -25,19 +25,6 @@ const VARIANTS = [
   { dir: '2400', resize: { width: 2400, height: 2400, fit: 'inside' }, quality: 82, sharpen: false },
 ];
 
-// Desktop layout rhythm inside each chapter (see .work--* in style.css):
-// a+b share a row, c is a solo, d+e share a staggered row, f is a wide solo.
-const RHYTHM = ['a', 'b', 'c', 'd', 'e', 'f'];
-const SIZES = {
-  a: '(min-width: 900px) 56vw, 100vw',
-  b: '(min-width: 900px) 32vw, 78vw',
-  c: '(min-width: 900px) 64vw, 100vw',
-  d: '(min-width: 900px) 40vw, 88vw',
-  e: '(min-width: 900px) 48vw, 78vw',
-  f: '(min-width: 900px) 72vw, 100vw',
-  solo: '(min-width: 900px) 64vw, 100vw',
-};
-
 const esc = (value) =>
   String(value ?? '')
     .replaceAll('&', '&amp;')
@@ -118,40 +105,89 @@ async function processPhoto(entry, slug) {
   };
 }
 
-function layoutFor(chapter) {
-  const slots = chapter.photos.map((p, i) => p.layout ?? RHYTHM[i % RHYTHM.length]);
-  const last = slots.length - 1;
-  // A row opener without a partner reads better centred on its own.
-  if (!chapter.photos[last].layout && (slots[last] === 'a' || slots[last] === 'd')) slots[last] = 'solo';
-  return slots;
+// Tiled layout: photos are grouped into rows of equal height that fill the page width.
+// A photo marked "feature" gets a row of its own, as does any photo left over on its own.
+const ROW_TARGET = 2.9; // ideal sum of aspect ratios per row
+function splitRows(photos) {
+  const rows = [];
+  let run = [];
+  const flush = () => {
+    const n = run.length;
+    const best = Array(n + 1).fill(Infinity);
+    const from = Array(n + 1).fill(0);
+    best[0] = 0;
+    for (let i = 1; i <= n; i++) {
+      for (let k = 1; k <= Math.min(3, i); k++) {
+        const sum = run.slice(i - k, i).reduce((acc, p) => acc + p.width / p.height, 0);
+        const cost = best[i - k] + (sum - ROW_TARGET) ** 2 + (k === 1 ? 1.5 : 0) + (k === 3 ? 1.2 : 0);
+        if (cost < best[i]) {
+          best[i] = cost;
+          from[i] = k;
+        }
+      }
+    }
+    const chunk = [];
+    for (let i = n; i > 0; i -= from[i]) chunk.unshift(run.slice(i - from[i], i));
+    rows.push(...chunk);
+    run = [];
+  };
+  for (const photo of photos) {
+    if (photo.feature) {
+      flush();
+      rows.push([photo]);
+    } else run.push(photo);
+  }
+  flush();
+  return rows;
 }
 
-function renderWork(photo, number, slot) {
-  const [small, medium, large] = photo.variants;
+function renderWork(photo, number, sizes) {
+  const [, medium, large] = photo.variants;
   const srcset = photo.variants.map((v) => `${v.rel} ${v.width}w`).join(', ');
   const ratio = (photo.width / photo.height).toFixed(4);
-  const orientation = photo.width < photo.height ? ' work--portrait' : '';
   return `
-        <figure class="work work--${slot}${orientation}" id="${esc(photo.slug)}" style="--ar:${ratio}">
-          <a class="work__frame" href="${esc(large.rel)}" style="--lqip:url(${photo.lqip})"
-             data-title="${esc(photo.title)}"
-             data-meta="${esc(photo.settings)}"
-             data-gear="${esc(photo.gear)}" data-no="${pad(number)}">
-            <img src="${esc(medium.rel)}" srcset="${esc(srcset)}" sizes="${SIZES[slot]}"
-                 width="${medium.width}" height="${medium.height}" alt="${esc(photo.alt)}"
-                 loading="lazy" decoding="async">
-          </a>
-          <figcaption class="work__caption">
-            <span class="work__no">${pad(number)}</span>
-            <span class="work__title">${esc(photo.title)}</span>
-            <span class="work__meta">${esc(photo.settings)}</span>
-          </figcaption>
-        </figure>`;
+          <figure class="work" id="${esc(photo.slug)}" style="--ar:${ratio}">
+            <a class="work__frame" href="${esc(large.rel)}" style="--lqip:url(${photo.lqip})"
+               data-title="${esc(photo.title)}"
+               data-meta="${esc(photo.settings)}"
+               data-gear="${esc(photo.gear)}" data-no="${pad(number)}">
+              <img src="${esc(medium.rel)}" srcset="${esc(srcset)}" sizes="${sizes}"
+                   width="${medium.width}" height="${medium.height}" alt="${esc(photo.alt)}"
+                   loading="lazy" decoding="async">
+            </a>
+            <figcaption class="work__caption">
+              <span class="work__title">${esc(photo.title)}</span>
+              <span class="work__meta">${esc(photo.settings)}</span>
+            </figcaption>
+          </figure>`;
+}
+
+function renderRow(row, startNumber) {
+  const ratios = row.map((p) => p.width / p.height);
+  const sum = ratios.reduce((a, b) => a + b, 0);
+  const solo = row.length === 1;
+  const works = row
+    .map((p, i) => {
+      const sizes = solo
+        ? `(min-width: 700px) min(100vw, calc(86vh * ${ratios[i].toFixed(3)})), 100vw`
+        : `(min-width: 700px) ${Math.round((100 * ratios[i]) / sum)}vw, 100vw`;
+      return renderWork(p, startNumber + i, sizes);
+    })
+    .join('');
+  return `
+        <div class="row${solo ? ' row--solo' : ''}">${works}
+        </div>`;
 }
 
 function renderChapter(chapter, startNumber) {
-  const slots = layoutFor(chapter);
-  const works = chapter.photos.map((p, i) => renderWork(p, startNumber + i, slots[i])).join('');
+  let number = startNumber;
+  const works = splitRows(chapter.photos)
+    .map((row) => {
+      const html = renderRow(row, number);
+      number += row.length;
+      return html;
+    })
+    .join('');
   const count = chapter.photos.length;
   return `
     <section class="chapter" id="${esc(chapter.id)}" aria-labelledby="${esc(chapter.id)}-title">
